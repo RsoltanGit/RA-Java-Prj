@@ -129,6 +129,7 @@
             </tr>
 
             <%--from "phase02.jsp" - start--%>
+<%--
             <tr>
                 <td>
                     Please Select Whether Or Not You are Working on Production Line:
@@ -155,6 +156,7 @@
                     <input type="radio" name="productionLineType" value="2"/> Permutation
                 </td>
             </tr>
+--%>
             <%--from "phase02.jsp" - end--%>
 
             <tr>
