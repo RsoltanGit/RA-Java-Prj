@@ -32,21 +32,21 @@
 
         //from "phase02.jsp"
         function resetOtherz() {
-            var x = document.getElementById('productionLine1');
-            var y = document.getElementById('productionLine2');
-            if (x != null && x.style.display == 'block') {
-                x.style.display = 'none';
+            var w = document.getElementById('productionLine1');
+            var v = document.getElementById('productionLine2');
+            if (w != null && w.style.display == 'block') {
+                w.style.display = 'none';
             }
-            if (y != null && y.style.display == 'block') {
-                y.style.display = 'none';
+            if (v != null && v.style.display == 'block') {
+                v.style.display = 'none';
             }
         }
 
         function pickProductionLine() {
-            var x = document.getElementById('productionLine1');
-            var y = document.getElementById('productionLine2');
-            x.style.display = 'block';
-            y.style.display = 'block';
+            var w = document.getElementById('productionLine1');
+            var v = document.getElementById('productionLine2');
+            w.style.display = 'block';
+            v.style.display = 'block';
         }
     </script>
 </head>
@@ -63,16 +63,6 @@
                     <input type="number" name="task" required maxlength="5" placeholder="tasks number"/>
                 </td>
             </tr>
-<%--
-            <tr>
-                <td>
-                    M (the maximum number of workstations)
-                </td>
-                <td>
-                    <input type="text" name="workstation"/>
-                </td>
-            </tr>
---%>
             <tr>
                 <td>
                     W (the maximum number of workers)
@@ -89,19 +79,9 @@
                     <input type="number" name="time" required maxlength="5" placeholder="max time desired"/>
                 </td>
             </tr>
-<%--
             <tr>
                 <td>
-                    K (the mode)
-                </td>
-                <td>
-                    <input type="text" name="mode"/>
-                </td>
-            </tr>
---%>
-            <tr>
-                <td>
-                    Please Select The Type of HR
+                    Please Select The Type of HR Strategy:
                 </td>
                 <td>
                     <input type="radio" name="hr" value="1" onclick="resetOthers();" required/> Single-Skill <br/>
@@ -129,7 +109,6 @@
             </tr>
 
             <%--from "phase02.jsp" - start--%>
-<%--
             <tr>
                 <td>
                     Please Select Whether Or Not You are Working on Production Line:
@@ -144,7 +123,7 @@
                     Please Enter The Number of Workstations (M):
                 </td>
                 <td>
-                    <input type="number" name="workstation" required maxlength="5"/>
+                    <input type="number" name="workstation" maxlength="5"/>
                 </td>
             </tr>
             <tr id="productionLine2" style="display: none;">
@@ -156,7 +135,6 @@
                     <input type="radio" name="productionLineType" value="2"/> Permutation
                 </td>
             </tr>
---%>
             <%--from "phase02.jsp" - end--%>
 
             <tr>

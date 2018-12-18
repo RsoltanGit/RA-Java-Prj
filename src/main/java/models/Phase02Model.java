@@ -4,7 +4,6 @@ import com.sun.org.apache.bcel.internal.generic.ALOAD;
 import utilities.Enums;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Phase02Model {
 
@@ -14,7 +13,16 @@ public class Phase02Model {
 
     private ArrayList<Integer> setOfStatus = new ArrayList<Integer>(); // K Array
 
-//    private List<List<Integer>> skills = new ArrayList<List<Integer>>();
+    // K array
+    private int mode_singleSkill = 1; // K = 1 - for the HR Strategy "Single-Skill"
+    private int[] mode_multiSkill_train; // K = Ki or Kj - for the HR Strategy "Multi-Skill" & "Train"
+    private int[] mode_multiSkill_hire; // K = Ki or Kj - for the HR Strategy "Multi-Skill" & "Hire"
+    private int[] mode_upSkill_train; // K = Ui or Uj - for the HR Strategy "Up-Skill" & "Train"
+    private int[] mode_upSkill_hire; // K = Ui or Uj - for the HR Strategy "Up-Skill" & "Hire"
+
+    private Integer workstation = 0; // (M)
+
+    //    private List<List<Integer>> skills = new ArrayList<List<Integer>>();
     private int[][] skills; //S_hj Matrix
     private int[][] trainingCosts; // b1_h_j Matrix
     private float[][] multiSkilledWorkerSalaries; // B2_h_j Matrix
@@ -26,11 +34,17 @@ public class Phase02Model {
 
     public Phase02Model() {}
 
-    public Phase02Model(ArrayList<Integer> salaries, ArrayList<Integer> costs, ArrayList<Integer> revenues, ArrayList<Integer> setOfStatus, int[][] skills, int[][] trainingCosts, float[][] multiSkilledWorkerSalaries, int[][][] durations, Enums.Context_Type context_type, Enums.ProductionLine_Type productionLine_type) {
+    public Phase02Model(ArrayList<Integer> salaries, ArrayList<Integer> costs, ArrayList<Integer> revenues, ArrayList<Integer> setOfStatus, int mode_singleSkill, int[] mode_multiSkill_train, int[] mode_multiSkill_hire, int[] mode_upSkill_train, int[] mode_upSkill_hire, Integer workstation, int[][] skills, int[][] trainingCosts, float[][] multiSkilledWorkerSalaries, int[][][] durations, Enums.Context_Type context_type, Enums.ProductionLine_Type productionLine_type) {
         this.salaries = salaries;
         this.costs = costs;
         this.revenues = revenues;
         this.setOfStatus = setOfStatus;
+        this.mode_singleSkill = mode_singleSkill;
+        this.mode_multiSkill_train = mode_multiSkill_train;
+        this.mode_multiSkill_hire = mode_multiSkill_hire;
+        this.mode_upSkill_train = mode_upSkill_train;
+        this.mode_upSkill_hire = mode_upSkill_hire;
+        this.workstation = workstation;
         this.skills = skills;
         this.trainingCosts = trainingCosts;
         this.multiSkilledWorkerSalaries = multiSkilledWorkerSalaries;
@@ -117,5 +131,57 @@ public class Phase02Model {
 
     public void setProductionLine_type(Enums.ProductionLine_Type productionLine_type) {
         this.productionLine_type = productionLine_type;
+    }
+
+    public Integer getMode_singleSkill() {
+        return mode_singleSkill;
+    }
+
+    public void setMode_singleSkill(Integer mode_singleSkill) {
+        this.mode_singleSkill = mode_singleSkill;
+    }
+
+    public void setMode_singleSkill(int mode_singleSkill) {
+        this.mode_singleSkill = mode_singleSkill;
+    }
+
+    public int[] getMode_multiSkill_train() {
+        return mode_multiSkill_train;
+    }
+
+    public void setMode_multiSkill_train(int[] mode_multiSkill_train) {
+        this.mode_multiSkill_train = mode_multiSkill_train;
+    }
+
+    public int[] getMode_multiSkill_hire() {
+        return mode_multiSkill_hire;
+    }
+
+    public void setMode_multiSkill_hire(int[] mode_multiSkill_hire) {
+        this.mode_multiSkill_hire = mode_multiSkill_hire;
+    }
+
+    public int[] getMode_upSkill_train() {
+        return mode_upSkill_train;
+    }
+
+    public void setMode_upSkill_train(int[] mode_upSkill_train) {
+        this.mode_upSkill_train = mode_upSkill_train;
+    }
+
+    public int[] getMode_upSkill_hire() {
+        return mode_upSkill_hire;
+    }
+
+    public void setMode_upSkill_hire(int[] mode_upSkill_hire) {
+        this.mode_upSkill_hire = mode_upSkill_hire;
+    }
+
+    public Integer getWorkstation() {
+        return workstation;
+    }
+
+    public void setWorkstation(Integer workstation) {
+        this.workstation = workstation;
     }
 }

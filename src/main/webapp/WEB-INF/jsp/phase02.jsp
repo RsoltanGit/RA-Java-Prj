@@ -1,4 +1,7 @@
+<%--TODO: This JSP file "phase02.jsp" along with the "Phase02Servlet.java" file will be commented due to the client's request in merging the phase01 and phase02 items together. Should be uncommented if needed in the future.--%>
 <%--<jsp:include page="utils/init.jsp"/>--%>
+
+<%--
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c_rt" uri="http://java.sun.com/jstl/core_rt" %>
@@ -89,7 +92,6 @@
                     K1 Array Info:
                 </td>
                 <td>
-                    <%--//TODO: should be replaced with # of workstations! :-)--%>
                     <c:forEach items="${ph02Model.revenues}" var="revenue" varStatus="loop">
                         <td>
                             <input type="number" name="revenue" required maxlength="5" placeholder="revenue <c:out value="${loop.index + 1}"/>"/>
@@ -132,3 +134,4 @@
     </form>
 </body>
 </html>
+--%>

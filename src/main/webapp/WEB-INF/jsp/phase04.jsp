@@ -12,19 +12,7 @@
 <body>
 <h2>Phase 04 Data Collection</h2><br/>
 
-<h4>Phase 03 Data Entered</h4>
-<table>
-    <tr>
-        <td>
-            The Type of Scheduling:
-        </td>
-        <td>
-            <c:out value="${ph03Model.scheduling_type}"/>
-        </td>
-    </tr>
-</table>
-
-<h2>Please Enter The Skill Matrix Based on The Data You Entered on The Previous Phases.</h2><br/>
+<h4>Please Enter The Skill Matrix Based on The Data You Entered on The Previous Phases.</h4><br/>
 <form action="phase04" method="post">
     <c:if test="${phase03Model.scheduling_type == 'SCHEDULING_OFF_SITE'}">
         <table>

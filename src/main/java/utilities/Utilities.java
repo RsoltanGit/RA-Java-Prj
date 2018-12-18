@@ -20,11 +20,54 @@ public class Utilities {
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String key = parameterNames.nextElement();
-//            String val = request.getParameter(key);
             if (StringUtils.equals(key, parameter)) {
                 paramValues = request.getParameterValues(key);
                 for (int counter = 0; counter < paramValues.length; counter ++) {
                     arrayList.add(Integer.valueOf(paramValues[counter]));
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    /**
+     * The Method gets the request and parameter and looks-up for the parameter's values within the request and returns a {@link Boolean} arrayList of all those values.
+     * @param request {@link HttpServletRequest}
+     * @param parameter {@link String}
+     * @return arrayList {@link ArrayList<Boolean>}
+     */
+    public static ArrayList<Boolean> extractBooleanParamListFromRequest(HttpServletRequest request, String parameter){
+        ArrayList<Boolean> arrayList = new ArrayList<>();
+        String[] paramValues;
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String key = parameterNames.nextElement();
+            if (StringUtils.equals(key, parameter)) {
+                paramValues = request.getParameterValues(key);
+                for (int counter = 0; counter < paramValues.length; counter ++) {
+                    arrayList.add(Boolean.valueOf(paramValues[counter]));
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    /**
+     * The Method gets the request and parameter and looks-up for the parameter's values within the request and returns a {@link Float} arrayList of all those values.
+     * @param request {@link HttpServletRequest}
+     * @param parameter {@link String}
+     * @return arrayList {@link ArrayList<Float>}
+     */
+    public static ArrayList<Float> extractFloatParamListFromRequest(HttpServletRequest request, String parameter){
+        ArrayList<Float> arrayList = new ArrayList<>();
+        String[] paramValues;
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String key = parameterNames.nextElement();
+            if (StringUtils.equals(key, parameter)) {
+                paramValues = request.getParameterValues(key);
+                for (int counter = 0; counter < paramValues.length; counter ++) {
+                    arrayList.add(Float.valueOf(paramValues[counter]));
                 }
             }
         }
