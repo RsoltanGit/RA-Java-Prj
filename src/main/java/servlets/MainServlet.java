@@ -3,7 +3,6 @@ package servlets;
 import models.MainModel;
 import models.Phase02Model;
 import models.Phase03Model;
-import org.apache.commons.lang3.StringUtils;
 import utilities.Enums;
 
 import javax.servlet.RequestDispatcher;
@@ -16,8 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
 
 //@WebServlet("/main")
 @WebServlet(name = "MainServlet", urlPatterns = "/main")
@@ -179,7 +176,9 @@ public class MainServlet extends HttpServlet {
 
         if (context_type == Enums.Context_Type.NO_PRODUCTION_LINE) {// No Production Line
             phase03Model.setTaskWorkerDurations(new int[task][worker]);
-
+            //Ci >= Ci' for all tasks - tasksOrders Matrix (with N-1 rows and N columns)
+            phase03Model.setTasksOrders(new boolean[task - 1][task]);
+//            phase03Model.setTasksOrdersInt(new int[task - 1][task]); // for UI use only - on Phase03.jsp file. :-)
         }
         else if (context_type == Enums.Context_Type.PRODUCTION_LINE) { // Production Line
             Integer workstation = phase02Model.getWorkstation();
@@ -192,9 +191,20 @@ public class MainServlet extends HttpServlet {
                     (phase02Model.getContext_type() == Enums.Context_Type.PRODUCTION_LINE && phase02Model.getProductionLine_type() == Enums.ProductionLine_Type.NO_PERMUTATION)) {// Permutation
                 //Ci >= Ci' for all tasks - tasksOrders Matrix (with N-1 rows and N columns)
                 phase03Model.setTasksOrders(new boolean[task - 1][task]);
+//                phase03Model.setTasksOrdersInt(new int[task - 1][task]); // for UI use only - on Phase03.jsp file. :-)
             }
         }
 
+        // deciding on which context type should be selected to ask on Ki, Kj OR Ui, Uj Arrays.
+/*
+        if (phase02Model.getContext_type() == Enums.Context_Type.NO_PRODUCTION_LINE) {
+            phase02Model.setContextDecisionBranch(Enums.Context_Decision_Branch.NO_PRODUCTION_LINE);
+        } else if (phase02Model.getContext_type() == Enums.Context_Type.PRODUCTION_LINE && phase02Model.getProductionLine_type() == Enums.ProductionLine_Type.NO_PERMUTATION) {
+            phase02Model.setContextDecisionBranch(Enums.Context_Decision_Branch.PRODUCTION_LINE_NO_PERMUTATION);
+        } else if (phase02Model.getContext_type() == Enums.Context_Type.PRODUCTION_LINE && phase02Model.getProductionLine_type() == Enums.ProductionLine_Type.PERMUTATION) {
+            phase02Model.setContextDecisionBranch(Enums.Context_Decision_Branch.PRODUCTION_LINE_PERMUTATION);
+        }
+*/
 
         return phase03Model;
     }

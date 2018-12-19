@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Map;
 
 @WebServlet(name = "Phase02Servlet", urlPatterns = "/phase02")
 public class Phase02Servlet extends HttpServlet {

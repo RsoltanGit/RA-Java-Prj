@@ -8,6 +8,30 @@
     <title>Export Data To Julia!</title>
 </head>
 <body>
+<h4>Data From Phase 01 and Phase 02</h4>
+<table>
+    <tr>
+        <td>
+
+        </td>
+    </tr>
+</table>
+
+<h4>Data From Phase 03</h4>
+<table>
+    <tr>
+        <td>
+        </td>
+    </tr>
+</table>
+
+<h4>Data From Phase 04</h4>
+<table>
+    <tr>
+        <td>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>

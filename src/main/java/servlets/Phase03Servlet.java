@@ -1,15 +1,12 @@
 package servlets;
 
-import com.sun.deploy.net.HttpRequest;
 import models.MainModel;
 import models.Phase02Model;
 import models.Phase03Model;
 import models.Phase04Model;
-import org.apache.commons.lang3.StringUtils;
 import utilities.Enums;
 import utilities.Utilities;
 
-import javax.rmi.CORBA.Util;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 @WebServlet(name = "Phase03Servlet", urlPatterns = "/phase03")
 public class Phase03Servlet extends HttpServlet {
@@ -46,8 +42,8 @@ public class Phase03Servlet extends HttpServlet {
 
     protected Phase03Model getPhase03ModelParams(HttpServletRequest request) {
 
-        Phase03Model phase03Model = new Phase03Model();
-        Integer workstation = ((Phase03Model) request.getSession().getAttribute("ph03Model")).getWorkstation();
+        Phase03Model phase03Model = ((Phase03Model) request.getSession().getAttribute("ph03Model"));
+        Integer workstation = phase03Model.getWorkstation();
 
         ArrayList<Integer> salaries;
         ArrayList<Integer> operationCosts;
@@ -119,14 +115,20 @@ public class Phase03Servlet extends HttpServlet {
         if (phase02Model.getContext_type() == Enums.Context_Type.NO_PRODUCTION_LINE ||
                 (phase02Model.getContext_type() == Enums.Context_Type.PRODUCTION_LINE && phase02Model.getProductionLine_type() == Enums.ProductionLine_Type.NO_PERMUTATION)) { // it is "No Production Line" or it is "Production Line", but with "No-Permutation".
             ArrayList al07 = Utilities.extractBooleanParamListFromRequest(request, "tasksOrder");
+            ArrayList al08 = Utilities.extractParamListFromRequest(request, "tasksOrder");
+
             boolean[][] orders = Utilities.arrayListOfBooleanToBooleanMatrix2D(al07, task - 1, task);
-            phase03Model.setTasksOrders(orders); // S_hj - Ci >= Ci' Matrix
+            int[][] taskOrdersInt = Utilities.arrayListOfIntToIntMatrix(al08, task - 1, task);
+
+            phase03Model.setTasksOrders(orders); // S_hj - Ci >= Ci' Matrix - Boolean
+            phase03Model.setTasksOrdersInt(taskOrdersInt); // S_hj - Ci >= Ci' Matrix - Int
         }
 
         return phase03Model;
     }
 
     private void extractHRStrategyValues(HttpServletRequest request, MainModel phase01Model, Phase02Model phase02Model) {
+
         if (phase01Model.getHr() == Enums.HREnum.MULTI_SKILL) {
             if (phase01Model.getHrMulti() == Enums.HRMultiSkillEnum.TRAIN) {
                 ArrayList al12 = Utilities.extractParamListFromRequest(request, "modeMultiSkillTrain"); // "HR Multi-Skill Train Mode" (Ki or Kj)

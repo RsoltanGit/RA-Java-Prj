@@ -1,6 +1,5 @@
 package models;
 
-import com.sun.org.apache.bcel.internal.generic.ALOAD;
 import utilities.Enums;
 
 import java.util.ArrayList;
@@ -31,10 +30,11 @@ public class Phase02Model {
 
     private Enums.Context_Type context_type;
     private Enums.ProductionLine_Type productionLine_type;
+//    private Enums.Context_Decision_Branch contextDecisionBranch;
 
     public Phase02Model() {}
 
-    public Phase02Model(ArrayList<Integer> salaries, ArrayList<Integer> costs, ArrayList<Integer> revenues, ArrayList<Integer> setOfStatus, int mode_singleSkill, int[] mode_multiSkill_train, int[] mode_multiSkill_hire, int[] mode_upSkill_train, int[] mode_upSkill_hire, Integer workstation, int[][] skills, int[][] trainingCosts, float[][] multiSkilledWorkerSalaries, int[][][] durations, Enums.Context_Type context_type, Enums.ProductionLine_Type productionLine_type) {
+    public Phase02Model(ArrayList<Integer> salaries, ArrayList<Integer> costs, ArrayList<Integer> revenues, ArrayList<Integer> setOfStatus, int mode_singleSkill, int[] mode_multiSkill_train, int[] mode_multiSkill_hire, int[] mode_upSkill_train, int[] mode_upSkill_hire, Integer workstation, int[][] skills, int[][] trainingCosts, float[][] multiSkilledWorkerSalaries, int[][][] durations, Enums.Context_Type context_type, Enums.ProductionLine_Type productionLine_type /*, Enums.Context_Decision_Branch contextDecisionBranch*/) {
         this.salaries = salaries;
         this.costs = costs;
         this.revenues = revenues;
@@ -51,6 +51,7 @@ public class Phase02Model {
         this.durations = durations;
         this.context_type = context_type;
         this.productionLine_type = productionLine_type;
+//        this.contextDecisionBranch = contextDecisionBranch;
     }
 
     public ArrayList<Integer> getSalaries() {
@@ -184,4 +185,14 @@ public class Phase02Model {
     public void setWorkstation(Integer workstation) {
         this.workstation = workstation;
     }
+
+/*
+    public Enums.Context_Decision_Branch getContextDecisionBranch() {
+        return contextDecisionBranch;
+    }
+
+    public void setContextDecisionBranch(Enums.Context_Decision_Branch contextDecisionBranch) {
+        this.contextDecisionBranch = contextDecisionBranch;
+    }
+*/
 }

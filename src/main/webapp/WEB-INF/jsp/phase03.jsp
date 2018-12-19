@@ -3,8 +3,12 @@
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>--%>
 <%@ taglib prefix="c_rt" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
+    <title>
+        Phase 03 Data Collection
+    </title>
 </head>
 <body>
 <h2>Phase 03 Data Collection</h2><br/>
@@ -45,12 +49,12 @@
     </table>
 
     <c:if test="${ph02Model.context_type == 'NO_PRODUCTION_LINE'}">
-
         <%-- All the Ki s --%>
         <c:if test="${not empty ph01Model.hrMulti || not empty ph01Mode.hrUp}">
             <table>
                 <c:if test="${not empty ph01Model.hrMulti}">
-                    <c:if test="${ph01Model.hrMulti == 'TRAIN'}">
+                    <%--<c:if test="${ph01Model.hrMulti == 'TRAIN'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_multiSkill_train) and (ph01Model.hrMulti == 'TRAIN')}">
                         <tr>
                             <td>
                                 Please Enter The Ki Array For "HR Multi-Skill Train Mode" (Ki):
@@ -62,7 +66,8 @@
                             </c:forEach>
                         </tr>
                     </c:if>
-                    <c:if test="${ph01Model.hrMulti == 'HIRE'}">
+                    <%--<c:if test="${ph01Model.hrMulti == 'HIRE'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_multiSkill_hire) and (ph01Model.hrMulti == 'HIRE')}">
                         <tr>
                             <td>
                                 Please Enter The Ki Array For "HR Multi-Skill Hire Mode" (Ki):
@@ -76,7 +81,8 @@
                     </c:if>
                 </c:if>
                 <c:if test="${not empty ph01Model.hrUp}">
-                    <c:if test="${ph01Model.hrUp == 'TRAIN'}">
+                    <%--<c:if test="${ph01Model.hrUp == 'TRAIN'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_upSkill_train) and (ph01Model.hrUp == 'TRAIN')}">
                         <tr>
                             <td>
                                 Please Enter The Ui Array For "HR Up-Skill Train Mode" (Ui):
@@ -88,7 +94,8 @@
                             </c:forEach>
                         </tr>
                     </c:if>
-                    <c:if test="${ph01Model.hrUp == 'HIRE'}">
+                    <%--<c:if test="${ph01Model.hrUp == 'HIRE'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_upSkill_hire) and (ph01Model.hrUp == 'HIRE')}">
                         <tr>
                             <td>
                                 Please Enter The Ui Array For "HR Up-Skill Hire Mode" (Ui):
@@ -160,11 +167,11 @@
     </c:if>
 
     <c:if test="${ph02Model.context_type == 'PRODUCTION_LINE'}">
-
         <c:if test="${not empty ph01Model.hrMulti || not empty ph01Mode.hrUp}">
             <table>
                 <c:if test="${not empty ph01Model.hrMulti}">
-                    <c:if test="${ph01Model.hrMulti == 'TRAIN'}">
+                    <%--<c:if test="${ph01Model.hrMulti == 'TRAIN'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_multiSkill_train) and (ph01Model.hrMulti == 'TRAIN')}">
                         <tr>
                             <td>
                                 Please Enter The Kj Array For "HR Multi-Skill Train Mode" (Kj):
@@ -176,7 +183,8 @@
                             </c:forEach>
                         </tr>
                     </c:if>
-                    <c:if test="${ph01Model.hrMulti == 'HIRE'}">
+                    <%--<c:if test="${ph01Model.hrMulti == 'HIRE'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_multiSkill_hire) and (ph01Model.hrMulti == 'HIRE')}">
                         <tr>
                             <td>
                                 Please Enter The Kj Array For "HR Multi-Skill Hire Mode" (Kj):
@@ -190,7 +198,8 @@
                     </c:if>
                 </c:if>
                 <c:if test="${not empty ph01Model.hrUp}">
-                    <c:if test="${ph01Model.hrUp == 'TRAIN'}">
+                    <%--<c:if test="${ph01Model.hrUp == 'TRAIN'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_upSkill_train) and (ph01Model.hrUp == 'TRAIN')}">
                         <tr>
                             <td>
                                 Please Enter The Uj Array For "HR Up-Skill Train Mode" (Uj):
@@ -202,7 +211,8 @@
                             </c:forEach>
                         </tr>
                     </c:if>
-                    <c:if test="${ph01Model.hrUp == 'HIRE'}">
+                    <%--<c:if test="${ph01Model.hrUp == 'HIRE'}">--%>
+                    <c:if test="${(not empty ph02Model.mode_upSkill_hire) and (ph01Model.hrUp == 'HIRE')}">
                         <tr>
                             <td>
                                 Please Enter The Uj Array For "HR Up-Skill Hire Mode" (Uj):
@@ -279,14 +289,15 @@
         </table>
     </c:if>
 
-    <h4> tasksOrders = <c:out value="${ph03Model.tasksOrders}"/> </h4>
+    <%--<h2> the length of tasksOrders is = ${fn:length(ph03Model.tasksOrders)} </h2>--%>
+    <%--<h2> the length of tasksOrdersInt is = ${fn:length(ph03Model.tasksOrdersInt)} </h2>--%>
 
     <c:if test="${(ph02Model.context_type == 'NO_PRODUCTION_LINE') or ((ph02Model.context_type == 'PRODUCTION_LINE') and (ph02Model.productionLine_type == 'NO_PERMUTATION'))}">
         <p><b>enter the tasks orders matrix. This matrix represents tasks priorities/precedences of each task against others.</b></p><br/>
         <p>
             Please note that the tasks orders matrix comprises (N-1) rows and (N) columns, where N refers to the number of Tasks.<br/>
-            For each row, please enter tasks happening after the current task (NEXT TASKS). For instance, if task2 should happen after task1, then in the 1st row (task1), enter 1 under task2.<br/>
-            For each column, please make sure that all elements with 1, happen before the current task. For example, if task2 should happen after task1, then under the 2ns column (task2) you should have 1 for task1 (row1).
+            For each row, please enter tasks happening after the current task (NEXT TASKS). For instance, if task2 should happen after task1, then in the 1st row (task1), enter "1" under task2. Put "0" in other positions.<br/>
+            For each column, please make sure that all elements with "1" value happen before the current task. For example, if task2 should happen after task1, then under the 2ns column (task2) you should have "1" for task1 (row1) and "0" for others.
         </p>
         <table>
             <tr>
@@ -296,13 +307,15 @@
             </tr>
             <%--TODO: maybe the input type checkbox is the best option for boolean value entry/selection here! :-)--%>
             <c:forEach items="${ph03Model.tasksOrders}" var="tasksOrderZ" varStatus="loop">
+            <%--<c:forEach items="${ph03Model.tasksOrdersInt}" var="tasksOrderZ" varStatus="loop">--%>
                 <tr>
                     <td>
                         Task <c:out value="${loop.index + 1}"/>
                     </td>
                     <c:forEach items="${tasksOrderZ}" var="tasksOrder" varStatus="innerLoop">
                         <td>
-                            <input type="number" name="tasksOrder" required maxlength="5" placeholder="[task <c:out value="${loop.index + 1}"/>, task <c:out value="${innerLoop.index + 1}"/>] order"/>
+                            <input type="number" name="tasksOrder" required maxlength="1" min="0" max="1" placeholder="[task <c:out value="${loop.index + 1}"/>, task <c:out value="${innerLoop.index + 1}"/>] order"/>
+                            <%--<input type="checkbox" name="tasksOrder" required/>--%>
                         </td>
                     </c:forEach>
                 </tr>

@@ -45,7 +45,8 @@ public class Utilities {
             if (StringUtils.equals(key, parameter)) {
                 paramValues = request.getParameterValues(key);
                 for (int counter = 0; counter < paramValues.length; counter ++) {
-                    arrayList.add(Boolean.valueOf(paramValues[counter]));
+                    Integer value = (paramValues[counter] != null) ? Integer.valueOf(paramValues[counter]) : 0;
+                    arrayList.add(value == 1 ? Boolean.TRUE : Boolean.FALSE);
                 }
             }
         }

@@ -20,7 +20,8 @@ public class Phase03Model {
 
     private Enums.Scheduling_Type scheduling_type;
 
-    private boolean[][] tasksOrders; // Ci >= Ci'
+    private boolean[][] tasksOrders; // Ci >= Ci' Boolean Matrix
+    private int[][] tasksOrdersInt; // Ci >= Ci' Integer Matrix (for UI use only!)
 
     public Phase03Model() {}
 
@@ -37,6 +38,22 @@ public class Phase03Model {
         this.sellingRevenues = sellingRevenues;
         this.scheduling_type = scheduling_type;
         this.tasksOrders = tasksOrders;
+    }
+
+    public Phase03Model(int[][] taskWorkerDurations, int[][][] taskWorkstationWorkerDurations, Integer workstation, int[][] workerWorkstationTrainingCosts, int[][] workerTaskTrainingCosts, float[][] workerWorkstationSalaries, float[][] workerTaskSalaries, int[] workerDailySalaries, int[] operationCosts, int[] sellingRevenues, Enums.Scheduling_Type scheduling_type, boolean[][] tasksOrders, int[][] tasksOrdersInt) {
+        this.taskWorkerDurations = taskWorkerDurations;
+        this.taskWorkstationWorkerDurations = taskWorkstationWorkerDurations;
+        this.workstation = workstation;
+        this.workerWorkstationTrainingCosts = workerWorkstationTrainingCosts;
+        this.workerTaskTrainingCosts = workerTaskTrainingCosts;
+        this.workerWorkstationSalaries = workerWorkstationSalaries;
+        this.workerTaskSalaries = workerTaskSalaries;
+        this.workerDailySalaries = workerDailySalaries;
+        this.operationCosts = operationCosts;
+        this.sellingRevenues = sellingRevenues;
+        this.scheduling_type = scheduling_type;
+        this.tasksOrders = tasksOrders;
+        this.tasksOrdersInt = tasksOrdersInt;
     }
 
     public int[][] getTaskWorkerDurations() {
@@ -133,5 +150,13 @@ public class Phase03Model {
 
     public void setTasksOrders(boolean[][] tasksOrders) {
         this.tasksOrders = tasksOrders;
+    }
+
+    public int[][] getTasksOrdersInt() {
+        return tasksOrdersInt;
+    }
+
+    public void setTasksOrdersInt(int[][] tasksOrdersInt) {
+        this.tasksOrdersInt = tasksOrdersInt;
     }
 }

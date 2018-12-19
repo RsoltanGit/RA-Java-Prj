@@ -1,5 +1,8 @@
 <html>
 <head>
+    <title>
+        Phase 01 & Phase 02 Data Collection
+    </title>
     <script>
         function resetOthers() {
             var x = document.getElementById('hrMultiSkill');

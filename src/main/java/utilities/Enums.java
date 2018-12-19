@@ -32,4 +32,12 @@ public class Enums {
         SCHEDULING_OFF_SITE,
         SCHEDULING_NO_PRODUCTION_LINE
     }
+
+/*
+    public enum Context_Decision_Branch {
+        NO_PRODUCTION_LINE,
+        PRODUCTION_LINE_NO_PERMUTATION,
+        PRODUCTION_LINE_PERMUTATION
+    }
+*/
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>
-        <script></script>
+        Phase 04 Data Collection
     </title>
 </head>
 <body>
@@ -14,48 +14,51 @@
 
 <h4>Please Enter The Skill Matrix Based on The Data You Entered on The Previous Phases.</h4><br/>
 <form action="phase04" method="post">
-    <c:if test="${phase03Model.scheduling_type == 'SCHEDULING_OFF_SITE'}">
-        <table>
+    <table>
+        <c:if test="${ph03Model.scheduling_type == 'SCHEDULING_OFF_SITE'}">
             <tr>
                 <td>
                     Skill Matrix (worker per workstation):
                 </td>
             </tr>
-            <c:forEach items="${phase04Model.workerWorkstationSkillMatrix}" var="workerWorkstationSkills" varStatus="loop1">
+            <c:forEach items="${ph04Model.workerWorkstationSkillMatrix}" var="workerWorkstationSkills" varStatus="loop1">
                 <tr>
                     <td>
                         Worker <c:out value="${loop1.index + 1}"/>
                     </td>
                     <c:forEach items="${workerWorkstationSkills}" var="workerWorkstationSkill" varStatus="innerLoop">
                         <td>
-                            <input type="number" name="workerWorkstationSkills" required maxlength="5" placeholder="skill <c:out value="${innerLoop.index + 1}"/>"/>
+                            <input type="number" name="workerWorkstationSkill" required maxlength="1" min="0" max="1" placeholder="worker<c:out value="${loop1.index + 1}"/> workstation<c:out value="${innerLoop.index + 1}"/> skill"/>
                         </td>
                     </c:forEach>
                 </tr>
             </c:forEach>
-        </table>
-    </c:if>
-    <c:if test="${phase03Model.scheduling_type == 'SCHEDULING_NO_PRODUCTION_LINE'}">
-        <table>
+        </c:if>
+        <c:if test="${ph03Model.scheduling_type == 'SCHEDULING_NO_PRODUCTION_LINE'}">
             <tr>
                 <td>
                     Skill Matrix (worker per task):
                 </td>
             </tr>
-            <c:forEach items="${phase04Model.workerTaskSkillMatrix}" var="workerTaskSkills" varStatus="loop2">
+            <c:forEach items="${ph04Model.workerTaskSkillMatrix}" var="workerTaskSkills" varStatus="loop2">
                 <tr>
                     <td>
                         Worker <c:out value="${loop2.index + 1}"/>
                     </td>
-                    <c:forEach items="${workerTaskSkills}" var="workerTaskSkill">
+                    <c:forEach items="${workerTaskSkills}" var="workerTaskSkill" varStatus="innerLoop">
                         <td>
-                            <<input type="number" name="workerTaskSkill" required maxlength="5"/>
+                            <input type="number" name="workerTaskSkill" required maxlength="1" min="0" max="1" placeholder="worker<c:out value="${loop2.index + 1}"/> task<c:out value="${innerLoop.index + 1}"/> skill"/>
                         </td>
                     </c:forEach>
                 </tr>
             </c:forEach>
-        </table>
-    </c:if>
+        </c:if>
+        <tr>
+            <td>
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
 </form>
 
 </body>
